@@ -1,0 +1,17 @@
+body {
+    margin: 30px;
+}
+
+.editor-field {
+    margin-bottom: 15px;
+}
+
+.editor-field label {
+    display: block;
+}
+
+.error {
+    color: red;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}

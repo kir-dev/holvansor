@@ -1,0 +1,8 @@
+h1 Az összes szoba, ahol van sör
+
+- if beer.empty?
+  | Nincs sör egyetlen szobában. :'(
+
+ul
+  - beer.map(:room).each do |room|
+    li = room

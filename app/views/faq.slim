@@ -1,0 +1,18 @@
+h1 FAQ
+
+dl.faq
+  dt Mi ez?
+  dd
+    | Ez egy egyszerű alkalmazás, amivel gyorsan kiderítheted hol van a sör a házban.
+  dt Nekem van söröm és osztanám. Mit tegyek?
+  dd
+    ' Látogass el a következő
+    a href="#{to '/add'}" linkre
+    '  és add meg a szobaszámod. Ezzel bekerültél a rendszerbe, a kapott
+    | tokent jól tedd el, mert másképp nem tudod törölni majd magad.
+  dt Eddig volt sör, de már nincs. Akkor mi legyen?
+  dd
+    ' Látogass el a következő
+    a href="#{to '/remove'}" linkre
+    '  és add meg a szobaszámod és a kapott tokent.
+    ' Ezután már nem jelenik meg a szobaszámod a rendszerben.

@@ -1,0 +1,18 @@
+h1 Szoba törlése
+
+- if @error
+  .error = @error
+
+form method="POST" action="remove"
+  input type="hidden" name="_method" value="delete"
+  .editor-field
+    label for="room" 
+      | Szoba:
+    input type="text" name="room" id="room"
+  .editor-field
+    label for="token" 
+      ' Token
+      small amit eltettél ugye?
+    input type="text" name="token" id="token"    
+  .editor-field
+    input type="submit" value="Nincs már sör!"

@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title holvansör
+    link rel="stylesheet" href="/css/normalize.css"
+    link rel="stylesheet" href="/css/application.css"
+  body
+    .wrapper
+      .content
+        == yield
+      .footer
+        | (c) tomi 
+        ul#menu
+          li: a href="/" főoldal
+          li: a href="#{ to '/faq'}" da faq(?)
+          li: a href="#{ to '/add'}" van söröm!
+          li: a href="#{ to '/remove'}" elfogyott a sör

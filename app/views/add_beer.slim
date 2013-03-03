@@ -1,0 +1,10 @@
+h1 Van söröm és osztom is!
+.error
+  = @error
+form action="/add" method="POST"
+  .editor-field
+    label for="room" 
+      | Szoba:
+    input type="text" name="room" id="room"
+  .editor-field
+    input type="submit" value="Osztom!"

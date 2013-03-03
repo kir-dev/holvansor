@@ -1,0 +1,72 @@
+body {
+    background-color: black;
+    color: #dedede;
+    font-size: 16px;
+}
+
+.wrapper {
+    margin: 0 20px;
+}
+
+.footer {
+    color: #dedede;
+    font-size: .8em;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 20px;
+}
+
+.footer a, .footer a:visited {
+    color: #dedede;
+}
+
+.footer a:hover {
+    color: red;
+}
+
+.footer ul#menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.footer ul#menu li {
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.footer ul#menu li:before {
+    padding-right: 5px;
+    content: "|";
+}
+
+.billboard {
+    font-size: 144px;
+    text-transform: uppercase;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 300px;
+}
+
+/* faq */
+
+.faq a {
+    color: #dedede;
+}
+
+.faq a:hover {
+    color: red;
+}
+
+dl.faq {
+    max-width: 700px;
+}
+dl.faq dt {
+    font-weight: bold;
+    margin: 20px 0 5px 0;
+    font-size: 1.2em;
+}
+
+dl.faq dd {
+}

@@ -1,0 +1,22 @@
+h1 Sikerült!
+p
+  | A következő tokent jól tedd el, mert csak ezzel tudod majd törölni a szobád
+  | a listáról.
+p#token = @token
+
+div: a href="/" Vissza a főoldalra
+
+javascript:
+  var range,
+      el = document.getElementById("token");
+  if (window.getSelection && document.createRange) {
+      range = document.createRange();
+      var sel = window.getSelection();
+      range.selectNodeContents(el);
+      sel.removeAllRanges();
+      sel.addRange(range);
+  } else if (document.body && document.body.createTextRange) {
+      range = document.body.createTextRange();
+      range.moveToElementText(el);
+      range.select();
+  }
