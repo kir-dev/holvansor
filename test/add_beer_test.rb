@@ -17,4 +17,12 @@ class AddBeerTest < MiniTest::Unit::TestCase
     assert_equal 1812, Beer.first[:room]
     assert_match Regexp.new(Beer.first[:token]), last_response.body
   end
+
+  def test_show_error_when_room_is_not_unique
+    Beer.create room: 1812
+    post "/add", room: "1812"
+
+    assert_match /error/, last_response.body
+  end
+
 end

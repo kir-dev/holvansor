@@ -10,9 +10,9 @@ class RemoveBeerTest < MiniTest::Unit::TestCase
   end
 
   def test_display_error_when_verification_token_does_not_match
-    Beer.create room: 100, token: "token"
+    Beer.create room: 202, token: "token"
 
-    delete "/remove", room: 100, token: "not-matching"
+    delete "/remove", room: 202, token: "not-matching"
 
     assert last_response.ok?
     assert_match /class=\"error\"/, last_response.body
@@ -20,9 +20,9 @@ class RemoveBeerTest < MiniTest::Unit::TestCase
   end
 
   def test_remove_room
-    Beer.create room: 100, token: "token"
+    Beer.create room: 1812, token: "token"
     
-    delete "/remove", room: 100, token: "token"
+    delete "/remove", room: 1812, token: "token"
 
     assert_equal 302, last_response.status
     assert Beer.empty?

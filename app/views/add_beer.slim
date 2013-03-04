@@ -1,6 +1,10 @@
 h1 Van söröm és osztom is!
-.error
-  = @error
+
+- if @error
+  ul.error
+    - @error.each do |_, msg|
+      li = msg.join
+
 form action="/add" method="POST"
   .editor-field
     label for="room" 

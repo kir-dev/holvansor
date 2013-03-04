@@ -4,8 +4,11 @@ require "rubygems"
 require "bundler/setup"
 require "sinatra"
 require "slim"
-require "sinatra/reloader" if development?
-require "securerandom"
+
+if development?
+  require "sinatra/reloader"
+  also_reload "app/models/beer.rb"
+end
 
 # require app parts
 $:.unshift File.expand_path(File.join(File.dirname(__FILE__), ".."))
@@ -40,14 +43,16 @@ get "/add" do
 end
 
 post "/add" do
-  if Beer.where(room: params[:room]).empty?
-    @token = SecureRandom.hex
-    Beer.create :room => params[:room], token: @token
+  b = Beer.new :room => params[:room].to_i
+  if b.save
+    # all done
+    @token = b.token
+    slim :add_done, layout: :form_layout
   else
-    @error = "A #{params[:room]} szobában már van sör."
-    halt slim(:add_beer, layout: :form_layout)
+    # validation error
+    @error = b.errors
+    slim :add_beer, layout: :form_layout
   end
-  slim :add_done, layout: :form_layout
 end
 
 get "/remove" do
