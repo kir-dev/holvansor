@@ -4,10 +4,7 @@ gem "sinatra"
 gem "sinatra-contrib"
 gem "slim"
 gem "sequel"
-
-group :development do
-  gem "sqlite3"
-end
+gem "sqlite3"
 
 group :test do
   gem "rack-test", require: false
