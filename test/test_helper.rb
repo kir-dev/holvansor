@@ -4,7 +4,7 @@ $:.unshift File.expand_path(File.join(File.dirname(__FILE__), ".."))
 require "minitest/autorun"
 require "rack/test"
 
-require "app"
+require "app/app"
 
 class MiniTest::Unit::TestCase
   include Rack::Test::Methods

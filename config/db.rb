@@ -10,7 +10,7 @@ if not defined? DB
   DB = Sequel.sqlite
 end
 
-DB.create_table :beer do
+DB.create_table :beers do
   primary_key :id
   Integer :room, :unique => true
   String :token, :size => 32

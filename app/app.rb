@@ -8,20 +8,22 @@ require "sinatra/reloader" if development?
 require "securerandom"
 
 # require app parts
-$:.unshift File.dirname(__FILE__)
+$:.unshift File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 require "config/db"
+require "app/models/beer"
 
 configure do
-  set :views, File.join(File.dirname(__FILE__), "app","views")
-  set :public_folder, File.join(File.dirname(__FILE__), "app", "assets")
+  set :app_file, __FILE__
+  # set :views, File.join(File.dirname(__FILE__), "app","views")
+  set :public_folder, File.join(File.dirname(__FILE__), "assets")
 end
 
 get "/" do
-  if not beer.empty?
-    ids = beer.map(:id)
+  if not Beer.empty?
+    ids = Beer.map(:id)
     id = ids[Random.rand(ids.size)]
-    @room = beer.first(id: id)[:room]
+    @room = Beer[id: id].room
   else
     @room = "nincs :'(" 
   end
@@ -38,9 +40,9 @@ get "/add" do
 end
 
 post "/add" do
-  if beer.where(room: params[:room]).empty?
+  if Beer.where(room: params[:room]).empty?
     @token = SecureRandom.hex
-    beer.insert :room => params[:room], token: @token
+    Beer.create :room => params[:room], token: @token
   else
     @error = "A #{params[:room]} szobában már van sör."
     halt slim(:add_beer, layout: :form_layout)
@@ -53,9 +55,9 @@ get "/remove" do
 end
 
 delete "/remove" do
-  b = beer.first room: params[:room]
+  b = Beer.first room: params[:room]
   if b && b[:token] == params[:token]
-    beer.where(:id => b[:id]).delete
+    b.destroy
     redirect to("/")
   else
     @error = "Nem sikerült kitörölni."
@@ -65,8 +67,4 @@ end
 
 get "/faq" do
   slim :faq
-end
-
-def beer
-  DB[:beer]
 end

@@ -8,18 +8,20 @@ Futtatás
 
 Szerezz kódot:
 
-`$ git clone git://github.com/tmichel/holvansor.git`
+~~~
+$ git clone git://github.com/tmichel/holvansor.git
+~~~
 
 In-memory adatbázissal:
 
 ~~~
 $ cd /path/to/holvasor
-$ ruby app.rb
+$ ruby app/app.rb
 ~~~
 
 Perzisztens SQLite adatbázissal
 
 ~~~
 $ cd /path/to/holvasor
-$ DATABASE_URI="/path/to/db.sqlite3" ruby app.rb
+$ DATABASE_URI="/path/to/db.sqlite3" ruby app/app.rb
 ~~~
