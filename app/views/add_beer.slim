@@ -2,13 +2,17 @@ h1 Van söröm és osztom is!
 
 - if @error
   ul.error
-    - @error.each do |_, msg|
-      li = msg.join
+    - @error.each do |msg|
+      li = msg
 
 form action="/add" method="POST"
   .editor-field
     label for="room" 
       | Szoba:
     input type="text" name="room" id="room"
+  .editor-field
+    label for="email" 
+      | Email (erre a címre küldjük a tokent, amivel törölni tudod magad):
+    input type="text" name="email" id="email"
   .editor-field
     input type="submit" value="Osztom!"

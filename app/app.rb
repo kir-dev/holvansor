@@ -4,6 +4,7 @@ require "rubygems"
 require "bundler/setup"
 require "sinatra"
 require "slim"
+require "pony"
 
 if development?
   require "sinatra/reloader"
@@ -14,6 +15,7 @@ end
 $:.unshift File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 require "config/db"
+require "config/mail"
 require "app/models/beer"
 
 configure do
@@ -31,7 +33,7 @@ get "/" do
     @room = "nincs :'(" 
   end
   
-  slim :home
+ slim :home
 end
 
 get "/all" do
@@ -44,13 +46,18 @@ end
 
 post "/add" do
   b = Beer.new :room => params[:room].to_i
-  if b.save
+  email_given = !params[:email].nil? && !params[:email].empty?
+
+  if b.save && email_given
     # all done
     @token = b.token
+    @email = params[:email]
+    Thread.new { mail @email, @token, b.room }
     slim :add_done, layout: :form_layout
   else
     # validation error
-    @error = b.errors
+    @error = b.errors.map { |_,msg| msg.join }
+    @error << "Nem adtál meg email címet!" unless email_given
     slim :add_beer, layout: :form_layout
   end
 end
@@ -72,4 +79,24 @@ end
 
 get "/faq" do
   slim :faq
+end
+
+def mail(to, token, room)
+  return if test? # do not send emails while testing
+
+  message = <<EOS
+Hello!
+
+Ezt az emailt azért kapod, mert jelezted, hogy a %d szobában van sör.
+
+A következő tokennel tudod törölni a szobád a listáról. Ne veszítsd el!
+
+Token: %s
+Link a törléshez: %s
+
+Kir-Dev
+EOS
+  
+  body = message % [room, token, to("/remove")]
+  Pony.mail to: to, subject: "holvansör token a #{room} szobához", body: body
 end

@@ -5,6 +5,7 @@ gem "sinatra-contrib"
 gem "slim"
 gem "sequel"
 gem "sqlite3"
+gem "pony"
 
 group :test do
   gem "rack-test", require: false

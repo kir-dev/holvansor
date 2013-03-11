@@ -4,19 +4,9 @@ p
   | a listáról.
 p#token = @token
 
-div: a href="/" Vissza a főoldalra
+p 
+  | A tokent emailben is elküldtük a 
+  =' @email
+  | címre.
 
-javascript:
-  var range,
-      el = document.getElementById("token");
-  if (window.getSelection && document.createRange) {
-      range = document.createRange();
-      var sel = window.getSelection();
-      range.selectNodeContents(el);
-      sel.removeAllRanges();
-      sel.addRange(range);
-  } else if (document.body && document.body.createTextRange) {
-      range = document.body.createTextRange();
-      range.moveToElementText(el);
-      range.select();
-  }
+div: a href="/" Vissza a főoldalra
