@@ -11,6 +11,18 @@ if development?
   also_reload "app/models/beer.rb"
 end
 
+configure :production do
+  Dir.mkdir "log" unless File.exists? "log"
+  LOG_PATH = "log/#{settings.environment}.log"
+
+  log_file = File.new(LOG_PATH, "a+")
+  $stdout.reopen(log_file)
+  $stderr.reopen(log_file)
+
+  $stdout.sync = true
+  $stderr.sync = true
+end
+
 # require app parts
 $:.unshift File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
@@ -20,8 +32,13 @@ require "app/models/beer"
 
 configure do
   set :app_file, __FILE__
-  # set :views, File.join(File.dirname(__FILE__), "app","views")
+  disable :run
+  enable :logging, :dump_erros
+end
+
+configure :development do
   set :public_folder, File.join(File.dirname(__FILE__), "assets")
+  set :raise_errors, true
 end
 
 get "/" do
@@ -45,6 +62,7 @@ get "/add" do
 end
 
 post "/add" do
+  logger.info "Trying to add a room (#{params[:room]}) from #{request.ip}"
   b = Beer.new :room => params[:room].to_i
   email_given = !params[:email].nil? && !params[:email].empty?
 

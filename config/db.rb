@@ -7,7 +7,7 @@ end
 
 # fall back to in-memory
 if not defined? DB
-  DB = Sequel.sqlite
+  DB = Sequel.sqlite :logger => Logger.new($stdout)
 end
 
 DB.create_table :beers do
