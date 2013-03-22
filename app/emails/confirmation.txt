@@ -1,0 +1,12 @@
+Hello!
+
+Már több mint két hete jelezted, hogy van sör a szobádban.
+Amennyiben ez még mindig így van látogass el a %s linkre.
+
+Ha már nincs söröd, akkor kérjük töröld a szobád a listáról.
+
+Token: %s
+Link a törléshez: %s
+
+Köszönettel,
+Kir-Dev

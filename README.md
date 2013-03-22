@@ -16,12 +16,12 @@ In-memory adatbázissal:
 
 ~~~
 $ cd /path/to/holvasor
-$ ruby app/app.rb
+$ rackup
 ~~~
 
 Perzisztens SQLite adatbázissal
 
 ~~~
 $ cd /path/to/holvasor
-$ DATABASE_URI="/path/to/db.sqlite3" ruby app/app.rb
+$ DATABASE_URI="/path/to/db.sqlite3" rackup
 ~~~

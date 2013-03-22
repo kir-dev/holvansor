@@ -19,7 +19,7 @@ class AddBeerTest < MiniTest::Unit::TestCase
   end
 
   def test_show_error_when_room_is_not_unique
-    Beer.create room: 1812
+    create_beer
     post "/add", room: "1812"
 
     assert_match /error/, last_response.body

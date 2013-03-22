@@ -63,7 +63,7 @@ end
 
 post "/add" do
   logger.info "Trying to add a room (#{params[:room]}) from #{request.ip}"
-  b = Beer.new :room => params[:room].to_i
+  b = Beer.new :room => params[:room].to_i, :email => params[:email]
   email_given = !params[:email].nil? && !params[:email].empty?
 
   if b.save && email_given
@@ -99,22 +99,23 @@ get "/faq" do
   slim :faq
 end
 
+get "/confirm/:token" do
+  b = Beer.first token: params[:token]
+  if b
+    b.marked_for_deletion = false
+    b.save
+
+    "Köszi! A megerősítése sikeres volt a #{b.room} szobához."
+  else
+    "Érvénytelen token."
+  end
+end
+
 def mail(to, token, room)
   return if test? # do not send emails while testing
 
-  message = <<EOS
-Hello!
-
-Ezt az emailt azért kapod, mert jelezted, hogy a %d szobában van sör.
-
-A következő tokennel tudod törölni a szobád a listáról. Ne veszítsd el!
-
-Token: %s
-Link a törléshez: %s
-
-Kir-Dev
-EOS
+  $message ||= File.read("#{settings.root}/emails/token.txt")
   
-  body = message % [room, token, to("/remove")]
+  body = $message % [room, token, to("/remove")]
   Pony.mail to: to, subject: "holvansör token a #{room} szobához", body: body
 end

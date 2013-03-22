@@ -8,8 +8,8 @@ class BeerModelTest < MiniTest::Unit::TestCase
   end
 
   def test_beer_room_must_be_actually_a_room_in_sch
-    b1 = Beer.new room: 10 # invalid room
-    b2 = Beer.new room: 202 # valid room
+    b1 = Beer.new room: 10, email: "me@a.com" # invalid room
+    b2 = Beer.new room: 202, email: "me@a.com" # valid room
 
     refute b1.valid?
     assert b2.valid?
@@ -17,9 +17,9 @@ class BeerModelTest < MiniTest::Unit::TestCase
 
   def test_room_number_must_be_unique
     room_number = 202
-    Beer.create room: room_number
+    create_beer room: room_number
     
-    beer = Beer.new room: room_number
+    beer = Beer.new room: room_number, email: "me@a.com"
     refute beer.valid?
   end
 end

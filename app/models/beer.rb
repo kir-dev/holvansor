@@ -7,11 +7,12 @@ class Beer < Sequel::Model
 
   self.raise_on_save_failure = false
   plugin :validation_helpers
+  plugin :timestamps
 
   def validate
     super
 
-    validates_presence [:room, :token]
+    validates_presence [:room, :token, :email]
     validates_includes ROOM_NUMBERS, :room, message: "Nincs ilyen szoba."
     validates_unique :room, message: "A megadott szobában már van sör."
   end

@@ -1,0 +1,10 @@
+Hello!
+
+Ezt az emailt azért kapod, mert jelezted, hogy a %d szobában van sör.
+
+A következő tokennel tudod törölni a szobád a listáról. Ne veszítsd el!
+
+Token: %s
+Link a törléshez: %s
+
+Kir-Dev

@@ -1,4 +1,5 @@
 ENV['RACK_ENV'] = "test"
+$do_not_log = true
 $:.unshift File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 require "minitest/autorun"
@@ -21,6 +22,15 @@ class MiniTest::Unit::TestCase
       result = _original_run(*args, &block)
     end
     result
+  end
+
+  def create_beer(defaults = {})
+    h = {
+      email: "me@example.com",
+      room: 1812
+    }.merge! defaults
+
+    Beer.create h
   end
 
 end

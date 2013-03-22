@@ -1,3 +1,5 @@
+require "pony"
+
 def symbolize_keys(hash)
   result = {}
   hash.each do |k,v|

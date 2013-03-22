@@ -8,7 +8,7 @@ class HomeTest < MiniTest::Unit::TestCase
   end
 
   def test_display_the_same_room_number_if_theres_only_one
-    Beer.create room: 1812
+    create_beer
 
     3.times do
       get "/"
