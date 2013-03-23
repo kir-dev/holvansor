@@ -13,6 +13,7 @@ class Beer < Sequel::Model
     super
 
     validates_presence [:room, :token, :email]
+    validates_format /.+@.+\..+/, :email, message: "Az email cím érvénytelen."
     validates_includes ROOM_NUMBERS, :room, message: "Nincs ilyen szoba."
     validates_unique :room, message: "A megadott szobában már van sör."
   end

@@ -22,4 +22,13 @@ class BeerModelTest < MiniTest::Unit::TestCase
     beer = Beer.new room: room_number, email: "me@a.com"
     refute beer.valid?
   end
+
+  def test_email_must_be_valid
+    b1 = Beer.new room: 202, email: "mea.com" # invalid email
+    b2 = Beer.new room: 202, email: "me@a.com" # valid email
+
+    refute b1.valid?
+    assert b2.valid?
+
+  end
 end
