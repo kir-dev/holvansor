@@ -12,6 +12,12 @@ Szerezz kódot:
 $ git clone git://github.com/tmichel/holvansor.git
 ~~~
 
+Szerezz gemeket:
+
+~~~
+$ bundle install
+~~~
+
 In-memory adatbázissal:
 
 ~~~
