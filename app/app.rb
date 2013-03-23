@@ -34,10 +34,10 @@ configure do
   set :app_file, __FILE__
   disable :run
   enable :logging, :dump_erros
+  set :public_folder, File.join(File.dirname(__FILE__), "assets")
 end
 
 configure :development do
-  set :public_folder, File.join(File.dirname(__FILE__), "assets")
   set :raise_errors, true
 end
 
