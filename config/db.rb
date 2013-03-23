@@ -1,5 +1,6 @@
 require "sequel"
 require "logger"
+require "config/config"
 
 if !test? && ENV['DATABASE_URI']
   DB = Sequel.connect ENV['DATABASE_URI']

@@ -21,7 +21,8 @@ end
 desc "Cleans the database from too old entries."
 task :clean_rooms do
 
-  HOST = ENV['HOST'] || "http://localhost:9292"
+  $:.unshift File.dirname(__FILE__)
+
   def test?; false end
   $do_not_log = true
 
@@ -29,10 +30,11 @@ task :clean_rooms do
   require "rubygems"
   require "bundler/setup"
   require "date"
-  require "./config/db"
-  require "./config/mail"
-  require "./app/models/beer"
+  require "config/db"
+  require "config/mail"
+  require "app/models/beer"
 
+  HOST = ENV['HOST'] || "http://localhost:9292"
 
   def mail(email, token)
     $message ||= File.read "app/emails/confirmation.txt"

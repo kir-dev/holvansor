@@ -1,0 +1,3 @@
+# e.g. db_uri: postgres://user:password@localhost/db_name
+db_uri: sqlite://dev.sqlite3
+host: http://localhost:9292 # az Rakefile-ban haszalat host, emailhez kell
