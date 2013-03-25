@@ -7,6 +7,10 @@ gem "sequel"
 gem "sqlite3"
 gem "pony"
 
+group :production do
+  gem "pg"
+end
+
 group :test do
   gem "rack-test", require: false
 end
