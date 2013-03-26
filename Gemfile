@@ -9,6 +9,7 @@ gem "pony"
 
 group :production do
   gem "pg"
+  gem "sequel_pg"
 end
 
 group :test do
