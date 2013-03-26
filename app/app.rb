@@ -85,7 +85,7 @@ get "/remove" do
 end
 
 delete "/remove" do
-  b = Beer.first room: params[:room]
+  b = Beer.first room: params[:room].to_i
   if b && b[:token] == params[:token]
     b.destroy
     redirect to("/")
