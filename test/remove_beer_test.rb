@@ -28,6 +28,25 @@ class RemoveBeerTest < MiniTest::Unit::TestCase
     assert Beer.empty?
   end
 
+  def test_remove_when_room_is_not_int
+    create_beer room: 1812, token: "token"
+
+    delete "/remove", room: "this-is-not-a-valid-int", token: "token"
+
+    assert last_response.ok?
+    assert_match /class=\"error\"/, last_response.body
+  end
+
+  def test_remove_when_room_is_intish
+    create_beer room: 1812, token: "token"
+
+    delete "/remove", room: "1812-this-is-intish", token: "token"
+
+    assert_equal 302, last_response.status
+    assert Beer.empty?
+
+  end
+
   def test_getting_remove_form
     get "/remove"
     assert last_response.ok?
