@@ -31,4 +31,15 @@ class BeerModelTest < MiniTest::Unit::TestCase
     assert b2.valid?
 
   end
+
+  def test_rooms_are_between_1_and_16_on_each_floor
+    room = 1800
+    (1..16).each do |n|
+      assert Beer.new(room: (room + n), email: "me@a.com").valid?
+    end
+
+    (17..20).each do |n|
+      refute Beer.new(room: (room + n), email: "me@a.com").valid?
+    end
+  end
 end

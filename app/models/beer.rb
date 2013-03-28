@@ -27,7 +27,7 @@ class Beer < Sequel::Model
     (2..18).each do |floor|
       f = floor * 100
 
-      (1..18).each do |room|
+      (1..16).each do |room|
         rooms << f + room
       end
     end

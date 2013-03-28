@@ -9,6 +9,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.21)
+    pg (0.15.0)
     polyglot (0.3.3)
     pony (1.4)
       mail (> 2.0)
@@ -18,6 +19,9 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     sequel (3.43.0)
+    sequel_pg (1.6.5)
+      pg (>= 0.8.0)
+      sequel (>= 3.39.0)
     sinatra (1.3.5)
       rack (~> 1.4)
       rack-protection (~> 1.3)
@@ -43,9 +47,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  pg
   pony
   rack-test
   sequel
+  sequel_pg
   sinatra
   sinatra-contrib
   slim
