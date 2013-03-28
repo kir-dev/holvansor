@@ -111,6 +111,11 @@ get "/confirm/:token" do
   end
 end
 
+# error pages
+error { slim :'500', layout: false } 
+
+# helper methods
+
 def mail(to, token, room)
   return if test? # do not send emails while testing
 
