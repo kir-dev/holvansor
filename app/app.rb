@@ -113,6 +113,7 @@ end
 
 # error pages
 error { slim :'500', layout: false } 
+not_found { slim :'404', layout: false } 
 
 # helper methods
 
